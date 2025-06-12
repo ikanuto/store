@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>StepUp | Tienda de Zapatillas</title>
   <style>
     body {
@@ -34,6 +34,11 @@
       width: 100%;
       height: auto;
       border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .producto img:hover {
+      transform: scale(1.03);
     }
     .producto h2 {
       margin: 15px 0 5px;
@@ -54,6 +59,42 @@
     .producto a:hover {
       background-color: #005fa3;
     }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
     footer {
       text-align: center;
       padding: 15px;
@@ -63,21 +104,60 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1>StepUp</h1>
     <p>Tu tienda de zapatillas favorita</p>
   </header>
 
   <section class="producto">
-    <img src="Zapatillas_Forum_Bold_Blanco_FY9042_01_standard.avif" alt="Adidas Forum Bold">
+    <img id="abrirModal" src="Zapatillas_Forum_Bold_Blanco_FY9042_01_standard.avif" alt="Adidas Forum Bold">
     <h2>Adidas Forum Bold</h2>
-    <p>Precio: S/ 1.00</p>
+    <p>Precio: S/ 479.00</p>
     <a href="https://wa.me/51922875241" target="_blank">Comprar por WhatsApp</a>
   </section>
+
+  <!-- Modal -->
+  <div id="miModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="cerrarModal">&times;</span>
+      <h3>Detalles del producto</h3>
+      <ul>
+        <li><strong>Modelo:</strong> Forum Bold FY9042</li>
+        <li><strong>Género:</strong> Mujer</li>
+        <li><strong>Tallas disponibles:</strong> 36, 37, 38, 39</li>
+        <li><strong>Colores:</strong> Blanco con detalles beige</li>
+        <li><strong>Stock:</strong> 8 pares disponibles</li>
+        <li><strong>Material:</strong> Cuero sintético y suela de goma</li>
+      </ul>
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 StepUp. Todos los derechos reservados.
   </footer>
+
+  <script>
+    const modal = document.getElementById("miModal");
+    const btn = document.getElementById("abrirModal");
+    const span = document.getElementById("cerrarModal");
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
 </body>
 </html>
+
 
