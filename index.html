@@ -2,134 +2,136 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StepUp | Tienda de Zapatillas</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
+      background-color: #f3f4f6;
       margin: 0;
       padding: 0;
+      color: #333;
     }
+
     header {
-      background-color: #111;
+      background-color: #1f2937;
       color: #fff;
       padding: 20px;
       text-align: center;
     }
+
     h1 {
       margin: 0;
+      font-size: 32px;
     }
-    .producto {
-      background-color: white;
-      width: 90%;
-      max-width: 400px;
-      margin: 30px auto;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-align: center;
+
+    p.subtitle {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #d1d5db;
     }
-    .producto img {
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 40px 20px;
+      gap: 40px;
+    }
+
+    .img-container {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
+      max-width: 400px;
+      transition: transform 0.5s ease;
       cursor: pointer;
+    }
+
+    .img-container img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
     }
-    .producto img:hover {
-      transform: scale(1.03);
+
+    .info-box {
+      width: 100%;
+      max-width: 400px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.5s ease;
     }
-    .producto h2 {
-      margin: 15px 0 5px;
+
+    .info-box.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
-    .producto p {
-      font-size: 18px;
-      color: #333;
+
+    .info-box h3 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #111827;
     }
-    .producto a {
+
+    .info-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-box li {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .buy-button {
       display: inline-block;
-      margin-top: 10px;
-      background-color: #0077cc;
+      margin-top: 20px;
+      background-color: #10b981;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 20px;
       text-decoration: none;
       border-radius: 8px;
-    }
-    .producto a:hover {
-      background-color: #005fa3;
+      font-weight: 600;
     }
 
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      padding-top: 100px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #000;
+    .buy-button:hover {
+      background-color: #059669;
     }
 
     footer {
       text-align: center;
       padding: 15px;
       font-size: 14px;
-      color: #777;
+      color: #6b7280;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>StepUp</h1>
-    <p>Tu tienda de zapatillas favorita</p>
+    <p class="subtitle">Tu tienda de zapatillas favorita</p>
   </header>
 
-  <section class="producto">
-    <img id="abrirModal" src="Zapatillas_Forum_Bold_Blanco_FY9042_01_standard.avif" alt="Adidas Forum Bold">
-    <h2>Adidas Forum Bold</h2>
-    <p>Precio: S/ 479.00</p>
-    <a href="https://wa.me/51922875241" target="_blank">Comprar por WhatsApp</a>
-  </section>
+  <div class="container">
+    <div class="img-container" onclick="mostrarInformacion()" id="zapatillaImagen">
+      <img src="Zapatillas_Forum_Bold_Blanco_FY9042_01_standard.avif" alt="Adidas Forum Bold">
+    </div>
 
-  <!-- Modal -->
-  <div id="miModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="cerrarModal">&times;</span>
-      <h3>Detalles del producto</h3>
+    <div class="info-box" id="infoBox">
+      <h3>Adidas Forum Bold FY9042</h3>
       <ul>
-        <li><strong>Modelo:</strong> Forum Bold FY9042</li>
         <li><strong>Género:</strong> Mujer</li>
         <li><strong>Tallas disponibles:</strong> 36, 37, 38, 39</li>
         <li><strong>Colores:</strong> Blanco con detalles beige</li>
         <li><strong>Stock:</strong> 8 pares disponibles</li>
         <li><strong>Material:</strong> Cuero sintético y suela de goma</li>
+        <li><strong>Precio:</strong> S/ 479.00</li>
       </ul>
+      <a class="buy-button" href="https://wa.me/51922875241" target="_blank">Comprar por WhatsApp</a>
     </div>
   </div>
 
@@ -138,25 +140,13 @@
   </footer>
 
   <script>
-    const modal = document.getElementById("miModal");
-    const btn = document.getElementById("abrirModal");
-    const span = document.getElementById("cerrarModal");
-
-    btn.onclick = function () {
-      modal.style.display = "block";
-    }
-
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+    function mostrarInformacion() {
+      const imgContainer = document.getElementById('zapatillaImagen');
+      const infoBox = document.getElementById('infoBox');
+      imgContainer.style.transform = 'translateX(-60px)';
+      infoBox.classList.add('visible');
     }
   </script>
-
 </body>
 </html>
 
