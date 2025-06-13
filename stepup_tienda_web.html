@@ -1,132 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StepUp - Tienda de Zapatillas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StepUp | Tienda de Zapatillas</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f4f6;
       margin: 0;
       padding: 0;
-      background: #f3f3f3;
+      color: #333;
     }
+
     header {
-      background-color: #222;
+      background-color: #1f2937;
       color: #fff;
       padding: 20px;
       text-align: center;
     }
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
     }
-    .producto {
-      background: #fff;
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    p.subtitle {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #d1d5db;
     }
-    .producto img {
-      max-width: 100%;
-      border-radius: 10px;
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 40px 20px;
+      gap: 40px;
     }
-    .boton {
-      background-color: #111;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      margin-top: 10px;
+
+    .img-container {
+      width: 100%;
+      max-width: 400px;
+      transition: transform 0.5s ease;
       cursor: pointer;
-      border-radius: 5px;
     }
-    #carrito {
-      background-color: #fff;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
+
+    .img-container img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
     }
+
+    .info-box {
+      width: 100%;
+      max-width: 400px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.5s ease;
+    }
+
+    .info-box.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #111827;
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-box li {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .buy-button {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #10b981;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .buy-button:hover {
+      background-color: #059669;
+    }
+
     footer {
-      background: #222;
-      color: #fff;
       text-align: center;
-      padding: 10px;
+      padding: 15px;
+      font-size: 14px;
+      color: #6b7280;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>StepUp</h1>
-    <p>Eleva tu estilo con nuestras zapatillas exclusivas</p>
+    <p class="subtitle">Tu tienda de zapatillas favorita</p>
   </header>
 
-  <section class="productos">
-    <div class="producto">
-      <img src="https://via.placeholder.com/250x200?text=Zapatilla+1" alt="Zapatilla 1">
-      <h3>Zapatilla RunnerX</h3>
-      <p>S/ 189.90</p>
-      <button class="boton" onclick="agregarAlCarrito('Zapatilla RunnerX', 189.90)">Agregar al carrito</button>
+  <div class="container">
+    <div class="img-container" onclick="mostrarInformacion()" id="zapatillaImagen">
+      <img src="Zapatillas_Forum_Bold_Blanco_FY9042_01_standard.avif" alt="Adidas Forum Bold">
     </div>
-    <div class="producto">
-      <img src="https://via.placeholder.com/250x200?text=Zapatilla+2" alt="Zapatilla 2">
-      <h3>Zapatilla Urban Flow</h3>
-      <p>S/ 210.00</p>
-      <button class="boton" onclick="agregarAlCarrito('Zapatilla Urban Flow', 210.00)">Agregar al carrito</button>
-    </div>
-    <div class="producto">
-      <img src="https://via.placeholder.com/250x200?text=Zapatilla+3" alt="Zapatilla 3">
-      <h3>Zapatilla StreetFire</h3>
-      <p>S/ 179.50</p>
-      <button class="boton" onclick="agregarAlCarrito('Zapatilla StreetFire', 179.50)">Agregar al carrito</button>
-    </div>
-  </section>
 
-  <section id="carrito">
-    <h2>🛒 Carrito de Compras</h2>
-    <ul id="lista-carrito"></ul>
-    <p><strong>Total:</strong> S/ <span id="total">0.00</span></p>
-    <a id="enlace-whatsapp" href="#" class="boton" target="_blank">Enviar pedido por WhatsApp</a>
-    <br><br>
-    <img src="https://via.placeholder.com/200x200?text=YAPE" alt="QR Yape">
-    <p>Escanea este código para pagar por Yape</p>
-  </section>
+    <div class="info-box" id="infoBox">
+      <h3>Adidas Forum Bold FY9042</h3>
+      <ul>
+        <li><strong>Género:</strong> Mujer</li>
+        <li><strong>Tallas disponibles:</strong> 36, 37, 38, 39</li>
+        <li><strong>Colores:</strong> Blanco con detalles beige</li>
+        <li><strong>Stock:</strong> 8 pares disponibles</li>
+        <li><strong>Material:</strong> Cuero sintético y suela de goma</li>
+        <li><strong>Precio:</strong> S/ 479.00</li>
+      </ul>
+      <a class="buy-button" href="https://wa.me/51922875241" target="_blank">Comprar por WhatsApp</a>
+    </div>
+  </div>
 
   <footer>
-    <p>&copy; 2025 StepUp. Todos los derechos reservados.</p>
+    &copy; 2025 StepUp. Todos los derechos reservados.
   </footer>
 
   <script>
-    let carrito = [];
-
-    function agregarAlCarrito(nombre, precio) {
-      carrito.push({ nombre, precio });
-      actualizarCarrito();
-    }
-
-    function actualizarCarrito() {
-      const lista = document.getElementById("lista-carrito");
-      const total = document.getElementById("total");
-      const enlace = document.getElementById("enlace-whatsapp");
-
-      lista.innerHTML = "";
-      let suma = 0;
-      let mensaje = "Hola, quiero comprar: %0A";
-
-      carrito.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.nombre} - S/ ${item.precio.toFixed(2)}`;
-        lista.appendChild(li);
-        suma += item.precio;
-        mensaje += `• ${item.nombre} - S/ ${item.precio.toFixed(2)}%0A`;
-      });
-
-      total.textContent = suma.toFixed(2);
-      mensaje += `%0ATotal: S/ ${suma.toFixed(2)}`;
-
-      enlace.href = `https://wa.me/51922875241?text=${mensaje}`;
+    function mostrarInformacion() {
+      const imgContainer = document.getElementById('zapatillaImagen');
+      const infoBox = document.getElementById('infoBox');
+      imgContainer.style.transform = 'translateX(-60px)';
+      infoBox.classList.add('visible');
     }
   </script>
 </body>
