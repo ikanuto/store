@@ -3,151 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StepUp | Tienda de Zapatillas</title>
+  <title>StepUp - Tienda de Zapatillas</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f3f4f6;
+    }
+
+    body {
       margin: 0;
       padding: 0;
+      background-color: #f5f7fa;
       color: #333;
     }
 
     header {
-      background-color: #1f2937;
-      color: #fff;
-      padding: 20px;
+      background-color: #ffffff;
+      padding: 1rem 2rem;
       text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     h1 {
       margin: 0;
-      font-size: 32px;
+      font-size: 2rem;
+      color: #2c3e50;
     }
 
-    p.subtitle {
-      margin-top: 5px;
-      font-size: 16px;
-      color: #d1d5db;
-    }
-
-    .container {
+    .gallery {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
-      margin: 40px 20px;
-      gap: 40px;
+      justify-content: center;
+      padding: 2rem;
+      gap: 2rem;
     }
 
-    .img-container {
-      width: 100%;
-      max-width: 400px;
-      transition: transform 0.5s ease;
-      cursor: pointer;
-    }
-
-    .img-container img {
-      width: 100%;
+    .shoe-card {
+      background-color: #fff;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
       transition: transform 0.3s ease;
+      width: 280px;
+      cursor: pointer;
+      position: relative;
     }
 
-    .info-box {
+    .shoe-card:hover {
+      transform: scale(1.02);
+    }
+
+    .shoe-img {
       width: 100%;
-      max-width: 400px;
+      height: auto;
+      display: block;
+    }
+
+    .info-panel {
+      position: fixed;
+      top: 50%;
+      right: -100%;
+      transform: translateY(-50%);
+      width: 300px;
       background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 25px;
-      opacity: 0;
-      transform: translateX(40px);
-      transition: all 0.5s ease;
+      border-left: 4px solid #2c3e50;
+      box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      transition: right 0.5s ease;
+      z-index: 100;
     }
 
-    .info-box.visible {
-      opacity: 1;
-      transform: translateX(0);
+    .info-panel.active {
+      right: 0;
     }
 
-    .info-box h3 {
+    .info-panel h2 {
       margin-top: 0;
-      font-size: 24px;
-      color: #111827;
+      color: #2c3e50;
     }
 
-    .info-box ul {
-      list-style: none;
-      padding-left: 0;
+    .info-panel p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
     }
 
-    .info-box li {
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-
-    .buy-button {
+    .whatsapp-btn {
       display: inline-block;
-      margin-top: 20px;
-      background-color: #10b981;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #25D366;
       color: white;
-      padding: 12px 20px;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-    }
-
-    .buy-button:hover {
-      background-color: #059669;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-      color: #6b7280;
+      border-radius: 6px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>StepUp</h1>
-    <p class="subtitle">Tu tienda de zapatillas favorita</p>
+    <h1>StepUp - Zapatillas Exclusivas</h1>
   </header>
 
-  <div class="container">
-    <div class="img-container" onclick="mostrarInformacion()" id="zapatillaImagen">
-      <img src="Zapatillas_Forum_Bold_Blanco_FY9042_01_standard.avif" alt="Adidas Forum Bold">
+  <div class="gallery">
+    <div class="shoe-card" onclick="showInfo(0)">
+      <img class="shoe-img" src="Zapatillas_Forum_Bold_Blanco_FY9042_01_standard.avif" alt="Forum Bold" />
     </div>
-
-    <div class="info-box" id="infoBox">
-      <h3>Adidas Forum Bold FY9042</h3>
-      <ul>
-        <li><strong>Género:</strong> Mujer</li>
-        <li><strong>Tallas disponibles:</strong> 36, 37, 38, 39</li>
-        <li><strong>Colores:</strong> Blanco con detalles beige</li>
-        <li><strong>Stock:</strong> 8 pares disponibles</li>
-        <li><strong>Material:</strong> Cuero sintético y suela de goma</li>
-        <li><strong>Precio:</strong> S/ 479.00</li>
-      </ul>
-      <a class="buy-button" href="https://wa.me/51922875241" target="_blank">Comprar por WhatsApp</a>
+    <div class="shoe-card" onclick="showInfo(1)">
+      <img class="shoe-img" src="WhatsApp Image 2025-06-12 at 19.01.22.jpeg" alt="Grand Court" />
+    </div>
+    <div class="shoe-card" onclick="showInfo(2)">
+      <img class="shoe-img" src="da19e71f-76d5-4e42-9f04-862b853d55af.jpg" alt="Hoops 3.0" />
     </div>
   </div>
 
-  <footer>
-    &copy; 2025 StepUp. Todos los derechos reservados.
-  </footer>
+  <div id="infoPanel" class="info-panel">
+    <h2 id="modelName">Nombre</h2>
+    <p><strong>Género:</strong> <span id="gender"></span></p>
+    <p><strong>Tallas disponibles:</strong> <span id="sizes"></span></p>
+    <p><strong>Stock:</strong> <span id="stock"></span></p>
+    <a id="whatsappBtn" href="#" target="_blank" class="whatsapp-btn">Comprar por WhatsApp</a>
+  </div>
 
   <script>
-    function mostrarInformacion() {
-      const imgContainer = document.getElementById('zapatillaImagen');
-      const infoBox = document.getElementById('infoBox');
-      imgContainer.style.transform = 'translateX(-60px)';
-      infoBox.classList.add('visible');
+    const zapatillas = [
+      {
+        modelo: "Adidas Forum Bold",
+        genero: "Mujer",
+        tallas: "36, 37, 38, 39",
+        stock: "10 unidades",
+      },
+      {
+        modelo: "Adidas Grand Court Base",
+        genero: "Hombre",
+        tallas: "40, 41, 42, 43",
+        stock: "8 unidades",
+      },
+      {
+        modelo: "Adidas Hoops 3.0 Low Classic Vintage",
+        genero: "Hombre",
+        tallas: "39, 40, 41, 42",
+        stock: "12 unidades",
+      }
+    ];
+
+    function showInfo(index) {
+      const panel = document.getElementById("infoPanel");
+      const zap = zapatillas[index];
+
+      document.getElementById("modelName").innerText = zap.modelo;
+      document.getElementById("gender").innerText = zap.genero;
+      document.getElementById("sizes").innerText = zap.tallas;
+      document.getElementById("stock").innerText = zap.stock;
+
+      const mensaje = `Hola, estoy interesado/a en las zapatillas ${zap.modelo}`;
+      document.getElementById("whatsappBtn").href = `https://wa.me/51922875241?text=${encodeURIComponent(mensaje)}`;
+
+      panel.classList.add("active");
     }
   </script>
 </body>
 </html>
-
-
